@@ -209,7 +209,7 @@ default:
 echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>座位：".$row[5]."</font></b></h4>";*/
 }
 
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>查詢結果：指令操作完成。</b></font></h4>";
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>查詢結果：取消訂位完成。</b></font></h4>";
 echo "</br><a class='btn  btn-primary' href='index.html'><font face='微軟正黑體'><b>按此回首頁</b></font></a>";
 
 sqlsrv_free_stmt( $stmt);
