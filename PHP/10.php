@@ -172,7 +172,6 @@ end catch
 
 
 
-
 if ($station_ID < $station_ID_end)
 {
 $stmt =  sqlsrv_query( $conn, $tsql );
