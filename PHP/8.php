@@ -6,7 +6,7 @@
 <script src="jquery.js"></script>
 		
 	
-<title>查詢車次</title>
+<title>車次查詢</title>
 
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">

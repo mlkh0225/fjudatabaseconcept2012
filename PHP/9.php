@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html ; charset=utf-8">
 <link rel="stylesheet" href="ui.datepicker.css" type="text/css" media="screen" title="core css file" charset="utf-8" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<title>page3</title>
+<title>確認車次</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
