@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html ; charset=utf-8">
@@ -82,6 +82,7 @@ $cellphone = $_POST['cellphone'];
 $first_name = $_POST['first_name'];
 $last_name = $_POST['last_name'];
 $email = $_POST['email'];
+$ticket_price = $_POST['ticket_price'];
 
 $serverName = "127.0.0.1";
 $uid = "sa";
@@ -172,6 +173,7 @@ end catch
 
 
 
+
 if ($station_ID < $station_ID_end)
 {
 $stmt =  sqlsrv_query( $conn, $tsql );
@@ -180,6 +182,11 @@ if  ($station_ID > $station_ID_end)
 {
 $stmt =  sqlsrv_query( $conn, $tsql1 );
 }
+
+
+
+
+
 
 
 $tsql2 = "select *
@@ -197,24 +204,124 @@ $fin_tick = $row[0];
 }
 
 
+$tsql3 = "select car_number, seat_number
+from seat
+where seat_ID='{$seat_id}'
+";
+$stmt = sqlsrv_query( $conn, $tsql3);
+
+
+while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_BOTH))
+{
+
+$car_seat = $row[0];
+$num_seat = $row[1];
+
+}
+
+
+
+
+
+
+
+
 if (empty($fin_tick))
 {
-echo "F";
+echo "ERROR PLEASE RETRY !!! ";
 exit();
 }
 echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>恭喜訂票成功，以下為您的購票資訊</font></b></h4>";
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>車票代號".$fin_tick."</font></b></h4>";
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>日期".$train_date."</font></b></h4>";
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>車次".$Train_ID."</font></b></h4>";
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>出發站".$station_ID."</font></b></h4>";
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>目地站".$station_ID_end."</font></b></h4>";
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>座位號碼".$seat_id."</font></b></h4>";
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>車票代號：".$fin_tick."</font></b></h4>";
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>日期：".$train_date."</font></b></h4>";
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>車次：".$Train_ID."</font></b></h4>";
 
 
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>身分證字號".$pid."</font></b></h4>";
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>手機".$cellphone."</font></b></h4>";
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>名字".$first_name." ".$last_name."</font></b></h4>";
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>電子信箱".$email."</font></b></h4>";
+switch ($station_ID){
+case "1":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>出發站：台北</font></b></h4>";
+break;
+
+case "2":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>出發站：板橋</font></b></h4>";
+break;
+
+case "3":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>出發站：桃園</font></b></h4>";
+break;
+
+case "4":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>出發站：新竹</font></b></h4>";
+break;
+
+case "5":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>出發站：台中</font></b></h4>";
+break;
+
+case "6":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>出發站：嘉義</font></b></h4>";
+break;
+
+case "7":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>出發站：台南</font></b></h4>";
+break;
+
+case "8":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>出發站：左營</font></b></h4>";
+break;
+
+default:
+  echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>沒車</font></b></h4>";
+}
+
+
+switch ($station_ID_end){
+case "1":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>目地站：台北</font></b></h4>";
+break;
+
+case "2":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>目地站：板橋</font></b></h4>";
+break;
+
+case "3":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>目地站：桃園</font></b></h4>";
+break;
+
+case "4":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>目地站：新竹</font></b></h4>";
+break;
+
+case "5":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>目地站：台中</font></b></h4>";
+break;
+
+case "6":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>目地站：嘉義</font></b></h4>";
+break;
+
+case "7":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>目地站：台南</font></b></h4>";
+break;
+
+case "8":
+ echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>目地站：左營</font></b></h4>";
+break;
+
+default:
+  echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>沒車</font></b></h4>";
+}
+
+
+
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>車廂：".$car_seat."座位：".$num_seat."</font></b></h4>";
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>票價：".$ticket_price."元</font></b></h4>";
+
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>身分證字號：".$pid."</font></b></h4>";
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>手機：".$cellphone."</font></b></h4>";
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>名字：".$first_name." ".$last_name."</font></b></h4>";
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>電子信箱：".$email."</font></b></h4>";
+
 echo "</br><a class='btn  btn-primary' href='index.html'><font face='微軟正黑體'><b>按此回首頁</b></font></a>";
 
 

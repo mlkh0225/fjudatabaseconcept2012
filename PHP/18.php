@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html ; charset=utf-8">
@@ -61,7 +61,7 @@
   
 
 </head>
-<body><form action="10.php" method="POST">
+<body><form action="19.php" method="POST">
 <div class="container" style="margin: 0px auto; width: 25%">
 	<form class="form-signin">
 <?php
@@ -102,6 +102,11 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_NUMERIC))
 {
 
 $reservation_number = $row[0];
+
+$start_station = $row[3];
+$end_station =$row[4];
+$seat_id = $row[5];
+
 
 echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>訂票查詢結果：</font></b></h4>";
 echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>訂票代碼：".$row[0]."</font></b></h4>";
@@ -181,16 +186,57 @@ default:
   echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>沒車</font></b></h4>";
 }
 
-echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>座位：".$row[5]."</font></b></h4>";
+$tsql3 = "select car_number, seat_number
+from seat
+where seat_ID='{$seat_id}'
+";
+$stmt3 = sqlsrv_query( $conn, $tsql3);
+
+
+while( $row = sqlsrv_fetch_array( $stmt3, SQLSRV_FETCH_BOTH))
+{
+
+$car_seat = $row[0];
+$num_seat = $row[1];
 
 }
+
+
+
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>車廂：".$car_seat."座位：".$num_seat."</font></b></h4>";
+
+
+$tsql3 = "select price
+from price
+where station_start='{$start_station}'
+	and station_end='{$end_station}'
+";
+$stmt2 = sqlsrv_query( $conn, $tsql3);
+
+
+while( $row = sqlsrv_fetch_array( $stmt2, SQLSRV_FETCH_BOTH))
+{
+
+$ticket_price = $row[0];
+
+
+}
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>票價：".$ticket_price."元</font></b></h4>";
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>==================</font></b></h4>";
+
+}
+
+
+
 
 if (empty($reservation_number))
 {
-echo "查無訂票資訊。";
+echo "<h4 class='form-signin-heading'><font face='微軟正黑體'><b>查無訂票資訊。</font></b></h4>";
 echo "</br><a class='btn  btn-primary' href='index.html'><font face='微軟正黑體'><b>回首頁</b></font></a>";
 exit();
 }
+
+echo "<input type='hidden' name='pid' value='".$reservation_number."'/>";
 
 echo "</br><a class='btn  btn-primary' href='index.html'><font face='微軟正黑體'><b>按此回首頁</b></font></a>";
 
@@ -198,6 +244,7 @@ sqlsrv_free_stmt( $stmt);
 sqlsrv_close( $conn);
 
 ?>
+
 
 </form>
 </div>

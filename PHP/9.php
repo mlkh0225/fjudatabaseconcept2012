@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html ; charset=utf-8">
@@ -329,7 +329,7 @@ $(document).ready(function(){
 <label for="cellphone" ><font face="微軟正黑體"><b>手機號碼：</font></b></label>
 <input type="text" id="cellphone" name="cellphone" maxlength="10" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" /><br />
 <label for="first_name" ><font face="微軟正黑體"><b>姓：</font></b></label>
-<input type="text" id="first_name" name="first_name" maxlength="5" /><br />
+<input type="text" id="first_name" name="first_name" maxlength="5" ><br />
 <label for="last_name" ><font face="微軟正黑體"><b>名：</font></b></label>
 <input type="text" id="last_name" name="last_name" maxlength="5" /><br />
 <label for="email" ><font face="微軟正黑體"><b>電子信箱：</font></b></label>
